@@ -1,0 +1,444 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: #0a0e27;
+    color: #e0e6ed;
+}
+
+/* ============================================
+   INDEX PAGE - WORLD MAP
+   ============================================ */
+
+.index-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.world-map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(rgba(10, 14, 39, 0.8), rgba(10, 14, 39, 0.8)),
+        url('https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) brightness(0.4);
+    z-index: 0;
+}
+
+.input-container {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(135deg, #1a1f3a 0%, #0f1729 100%);
+    padding: 60px 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    border: 1px solid #2d3548;
+}
+
+.input-container h1 {
+    font-size: 42px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #5b6d8f 0%, #8ba4c7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#locationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#locationInput {
+    padding: 18px 24px;
+    font-size: 18px;
+    background: #0f1729;
+    border: 2px solid #2d3548;
+    border-radius: 12px;
+    color: #e0e6ed;
+    outline: none;
+    transition: all 0.3s ease;
+    min-width: 400px;
+}
+
+#locationInput:focus {
+    border-color: #5b6d8f;
+    box-shadow: 0 0 20px rgba(91, 109, 143, 0.3);
+}
+
+#locationInput::placeholder {
+    color: #6b7b95;
+}
+
+.hint {
+    font-size: 14px;
+    color: #6b7b95;
+    margin-top: 5px;
+}
+
+/* ============================================
+   WEATHER PAGE
+   ============================================ */
+
+.weather-page {
+    padding: 40px 20px;
+}
+
+.weather-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #1a1f3a 0%, #0f1729 100%);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    border: 1px solid #2d3548;
+}
+
+.back-button {
+    background: #2d3548;
+    border: none;
+    color: #8ba4c7;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.back-button:hover {
+    background: #3d4558;
+    transform: translateX(-5px);
+}
+
+.weather-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #2d3548;
+}
+
+.weather-header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    color: #8ba4c7;
+}
+
+#currentTime {
+    font-size: 24px;
+    color: #6b7b95;
+    font-weight: 300;
+}
+
+.weather-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: #0f1729;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #2d3548;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: #5b6d8f;
+    box-shadow: 0 10px 30px rgba(91, 109, 143, 0.2);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #6b7b95;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 36px;
+    font-weight: bold;
+    color: #8ba4c7;
+}
+
+.stat-unit {
+    font-size: 20px;
+    color: #6b7b95;
+    margin-left: 5px;
+}
+
+.weather-description {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 20px;
+    color: #8ba4c7;
+    padding: 20px;
+    background: #0f1729;
+    border-radius: 12px;
+    border: 1px solid #2d3548;
+}
+
+.loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px;
+    font-size: 20px;
+    color: #6b7b95;
+}
+
+.error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px;
+    font-size: 18px;
+    color: #c75b5b;
+    background: rgba(199, 91, 91, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(199, 91, 91, 0.3);
+}
+
+/* ============================================
+   ALERTS SECTION
+   ============================================ */
+
+.alerts-section {
+    margin-bottom: 40px;
+    background: #0f1729;
+    border-radius: 12px;
+    border: 2px solid #c75b5b;
+    overflow: hidden;
+}
+
+.alerts-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(199, 91, 91, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.alerts-header:hover {
+    background: rgba(199, 91, 91, 0.3);
+}
+
+.alerts-icon {
+    font-size: 28px;
+}
+
+.alerts-title {
+    flex: 1;
+    font-size: 20px;
+    font-weight: bold;
+    color: #c75b5b;
+}
+
+.alerts-toggle {
+    background: none;
+    border: none;
+    color: #c75b5b;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.alerts-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.alerts-content.show {
+    max-height: 1000px;
+}
+
+.alert-item {
+    padding: 20px;
+    border-top: 1px solid #2d3548;
+    background: rgba(10, 14, 39, 0.5);
+}
+
+.alert-item.severe {
+    border-left: 4px solid #c75b5b;
+}
+
+.alert-item.moderate {
+    border-left: 4px solid #d4a843;
+}
+
+.alert-item.minor {
+    border-left: 4px solid #5b8fc7;
+}
+
+.alert-event {
+    font-size: 18px;
+    font-weight: bold;
+    color: #c75b5b;
+    margin-bottom: 10px;
+}
+
+.alert-headline {
+    font-size: 16px;
+    color: #8ba4c7;
+    margin-bottom: 10px;
+}
+
+.alert-description {
+    font-size: 14px;
+    color: #6b7b95;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* ============================================
+   RADAR SECTION
+   ============================================ */
+
+.radar-section {
+    margin-bottom: 40px;
+}
+
+.radar-title {
+    font-size: 28px;
+    color: #8ba4c7;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.radar-map {
+    width: 100%;
+    height: 500px;
+    border-radius: 12px;
+    border: 2px solid #2d3548;
+    overflow: hidden;
+    background: #0f1729;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.weather-gov-button {
+    padding: 18px;
+    background: linear-gradient(135deg, #2d3548 0%, #1a1f3a 100%);
+    border: 2px solid #5b6d8f;
+    color: #8ba4c7;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.weather-gov-button:hover {
+    background: linear-gradient(135deg, #3d4558 0%, #2a2f4a 100%);
+    border-color: #8ba4c7;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(91, 109, 143, 0.4);
+}
+
+.refresh-button {
+    padding: 18px;
+    background: linear-gradient(135deg, #5b6d8f 0%, #4a5c7d 100%);
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.refresh-button:hover {
+    background: linear-gradient(135deg, #6b7d9f 0%, #5a6c8d 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(91, 109, 143, 0.4);
+}
+
+.refresh-button:active,
+.weather-gov-button:active {
+    transform: translateY(0);
+}
+
+.refresh-icon {
+    font-size: 24px;
+    display: inline-block;
+    transition: transform 0.5s ease;
+}
+
+.refresh-button:hover .refresh-icon {
+    transform: rotate(180deg);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    #locationInput {
+        min-width: 300px;
+    }
+
+    .input-container {
+        padding: 40px 30px;
+    }
+
+    .input-container h1 {
+        font-size: 32px;
+    }
+
+    .weather-container {
+        padding: 25px;
+    }
+
+    .weather-header h1 {
+        font-size: 36px;
+    }
+
+    .stat-value {
+        font-size: 28px;
+    }
+
+    .radar-map {
+        height: 350px;
+    }
+
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+}
